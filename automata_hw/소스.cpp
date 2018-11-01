@@ -1,10 +1,9 @@
-#include <iostream>
-
-using namespace std;
+#include "Çì´õ.h"
 
 int main()
 {
 	cout << "hello,world!" << endl;
+
 
 
 	return 0;
