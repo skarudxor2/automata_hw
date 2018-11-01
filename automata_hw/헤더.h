@@ -4,24 +4,30 @@
 
 using namespace std;
 
-class state
+class State
 {
 	int id;
 	bool isFinal;
 
+
+	State();
 };
 
-class automaton
+class Automaton
 {
+	int number_of_states;
 	char *sigma; // set of alphabet
-	vector<state> internal_states;
-	vector<state> final_states;
-	vector<vector<state>> transition_rules;
+	vector<State> internal_states;
+	vector<State> final_states;
+	vector<vector<State>> transition_rules;
 
-	state *current_state;
-	state *initial_state;
+	State *current_state;
+	State *initial_state;
 
+	Automaton(char *sigma);
 	void create_state(int *transtion);
 	void transition(char input);
 
+
+	~Automaton();
 };

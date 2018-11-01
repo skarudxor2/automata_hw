@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="소스.cpp" />
+    <ClCompile Include="소스1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="헤더.h" />
