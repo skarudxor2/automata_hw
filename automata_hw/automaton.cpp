@@ -7,11 +7,15 @@ State::State(int id, bool isFinal)
 
 }
 
-Automaton::Automaton(vector<char> sigma)
-	: sigma(sigma), number_of_states(0)
+State::State(string label, bool isFinal)
+	: label(label), isFinal(isFinal)
 {
-	initial_state = new State(0);
-	internal_states.push_back(initial_state);
+
+}
+
+Automaton::Automaton(vector<char>sigma, vector<string>states, string initial, vector<string>finalStates, vector<string>delta)
+{
+
 }
 
 void Automaton::create_state(int *transition)

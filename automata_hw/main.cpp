@@ -1,31 +1,9 @@
 #include "header.h"
-
-
 #define MAX_SIZE 1000
 
 const string PARSE_ERR = "parsing err!";
 const string NO_INIT_IN_STATES = "initial state is not exists in states";
 const string NO_FINAL_IN_STATES = "some final states are not exists in states";
-
-std::string DirectoryContaining(const std::string &filename)
-{
-	// This code isn't tested but I believe it should work. Might need to add
-	// some const_casts to make it compile though.
-	char drive[_MAX_DRIVE];
-	char dir[_MAX_DIR];
-	char ext[_MAX_EXT];
-
-	errno_t err = _splitpath_s(filename.c_str(), drive, _MAX_DRIVE, dir,
-							   _MAX_DIR, nullptr, 0, ext, _MAX_EXT);
-	if (err == 0)
-	{
-		char fullDir[_MAX_PATH];
-		err = _makepath_s(fullDir, _MAX_PATH, drive, dir, nullptr, nullptr);
-		if (err == 0) return std::string(fullDir);
-	}
-	return filename;
-}
-
 
 int main(int argc, char *argv[])
 {
@@ -38,7 +16,7 @@ int main(int argc, char *argv[])
 
 
 	string filename = argv[1];
-	cout << "input file name : " << filename << endl<<endl;
+	cout << "input file name : " << filename << endl << endl;
 	ifstream in(filename);
 	char inBuffer[MAX_SIZE];
 
@@ -48,14 +26,12 @@ int main(int argc, char *argv[])
 	vector<string> delta;
 	string initial;
 
-
-
-	vector<string> stringVector;
 	while (!in.eof())
 	{
 		in.getline(inBuffer, 500);
 		string inString(inBuffer);
 		char token = inString[0];
+		vector<string> stringVector;
 
 		stringVector = split(inString, '[');
 		stringVector = split(stringVector[1], ']');
@@ -73,8 +49,8 @@ int main(int argc, char *argv[])
 				//states
 			case 's':
 				for (auto i : stringVector)
-					if(i!="")
-					states.push_back(i);
+					if (i != "")
+						states.push_back(i);
 				break;
 				//initial state
 			case 'i':
@@ -88,8 +64,8 @@ int main(int argc, char *argv[])
 				//final states
 			case 'f':
 				for (auto i : stringVector)
-					if(i!="")
-					finalStates.push_back(i);
+					if (i != "")
+						finalStates.push_back(i);
 				break;
 				//delta
 			case 'd':
@@ -103,7 +79,7 @@ int main(int argc, char *argv[])
 	}
 
 	//check whether initial is  in internal states
-	if (initCheck(states,initial))
+	if (initCheck(states, initial))
 	{
 		cout << NO_INIT_IN_STATES << endl;
 		cout << "initial = " << initial << endl;
@@ -133,7 +109,7 @@ int main(int argc, char *argv[])
 	printInput(sigma, states, initial, finalStates, delta);
 
 
-	Automaton automaton(sigma);
+	Automaton automaton(sigma, states, initial, finalStates, delta);
 
 	return 0;
 }

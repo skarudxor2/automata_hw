@@ -17,6 +17,7 @@ class State
 
 public:
 	State(int id,bool isFinal=false);
+	State(string label,bool isFinal=false);
 	int getId()
 	{
 		return id;
@@ -43,7 +44,7 @@ class Automaton
 	void transition(char input);
 
 public:
-	Automaton(vector<char> sigma);
+	Automaton(vector<char>sigma, vector<string>states, string initial, vector<string>finalStates, vector<string>delta);
 	void showCur()
 	{
 		int curId = current_state->getId();
