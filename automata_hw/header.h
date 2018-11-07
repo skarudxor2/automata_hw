@@ -6,7 +6,15 @@
 #include <fstream>
 #include <sstream>
 
+#define MAX_SIZE 1000
+
 using namespace std;
+
+const string PARSE_ERR = "parsing err!";
+const string NO_INIT_IN_STATES = "initial state is not exists in states";
+const string NO_FINAL_IN_STATES = "some final states are not exists in states";
+const string TRANSITION_ERROR = "err while transition";
+const string GREEK_DELTA = "\u03B4";
 
 class State
 {
@@ -16,8 +24,8 @@ class State
 
 
 public:
-	State(int id,bool isFinal=false);
-	State(string label,bool isFinal=false);
+	State(string label, int id, bool isFinal = false);
+
 	int getId()
 	{
 		return id;
@@ -26,6 +34,16 @@ public:
 	{
 		return isFinal;
 	}
+	string getLabel()
+	{
+		return label;
+	}
+	void setFinal(bool isFinal)
+	{
+		this->isFinal = isFinal;
+	}
+
+
 };
 
 class Automaton
@@ -34,21 +52,26 @@ class Automaton
 	vector<char> sigma; // set of alphabet
 	vector<State*> internal_states;
 	vector<State*> final_states;
-	vector<vector<State>> transition_rules; //or int[][]
+	vector<vector<string>> transition_rules; //or int[][]
 
 	State *current_state;
 	State *initial_state;
 
 	
-	void create_state(int *transtion);
-	void transition(char input);
+	State *findWithLabel(string label);
 
 public:
 	Automaton(vector<char>sigma, vector<string>states, string initial, vector<string>finalStates, vector<string>delta);
-	void showCur()
+	void showStatus();
+	void transition(char input);
+	//is input string accepted
+	bool isAccepted()
 	{
-		int curId = current_state->getId();
-		cout << "Id of current state is " << curId << endl;
+		return current_state->isFinalState();
+	}
+	State *getCurrentState()
+	{
+		return current_state;
 	}
 	~Automaton();
 };
@@ -59,3 +82,4 @@ vector<string> split(const string& s, char delimiter);
 void printInput(vector<char> sigma, vector<string>states, string initial, vector<string>finalStates, vector<string>delta);
 bool finalCheck(vector<string>states, vector<string>finalStates);
 bool initCheck(vector<string> states, string initial);
+bool elem(vector<string>vec, string str);

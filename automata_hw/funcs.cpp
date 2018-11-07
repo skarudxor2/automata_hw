@@ -2,6 +2,7 @@
 
 void printInput(vector<char> sigma, vector<string>states, string initial, vector<string>finalStates, vector<string>delta)
 {
+	cout << "printInput()" << endl;
 	cout << "sigma : " << sigma.size() << "->";
 	for (auto i : sigma)
 		cout << i << " ";
@@ -69,4 +70,15 @@ std::vector<std::string> split(const std::string& s, char delimiter)
 		tokens.push_back(token);
 	}
 	return tokens;
+}
+
+//return true if str is in vec
+bool elem(vector<string> vec, string str)
+{
+	bool flag = false;
+	for (auto i : vec)
+		if (str == i)
+			flag = true;
+
+	return flag;
 }

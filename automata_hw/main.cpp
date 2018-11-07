@@ -1,9 +1,4 @@
 #include "header.h"
-#define MAX_SIZE 1000
-
-const string PARSE_ERR = "parsing err!";
-const string NO_INIT_IN_STATES = "initial state is not exists in states";
-const string NO_FINAL_IN_STATES = "some final states are not exists in states";
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +9,7 @@ int main(int argc, char *argv[])
 	}
 
 
+	bool debug = true;
 
 	string filename = argv[1];
 	cout << "input file name : " << filename << endl << endl;
@@ -25,7 +21,9 @@ int main(int argc, char *argv[])
 	vector<string> finalStates;
 	vector<string> delta;
 	string initial;
+	string input;
 
+	//parsing
 	while (!in.eof())
 	{
 		in.getline(inBuffer, 500);
@@ -105,11 +103,39 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-
-	printInput(sigma, states, initial, finalStates, delta);
-
-
 	Automaton automaton(sigma, states, initial, finalStates, delta);
+
+	if (debug)
+	{
+		cout << "*********************************DEBUG*********************************"<<endl;
+		printInput(sigma, states, initial, finalStates, delta);
+		automaton.showStatus();
+		cout << "*********************************DEBUG*********************************"<<endl<<endl;
+
+	}
+
+	cout << "enter input string : ";
+	cin >> input;
+
+	string initialLabel = automaton.getCurrentState()->getLabel();
+	string isFinal, isAcc;
+	string::iterator iter;
+
+	cout << "initial state = " << initialLabel << endl;
+	cout << initialLabel;
+	for (iter = input.begin(); iter != input.end(); ++iter)
+	{
+		string curLabel;
+		automaton.transition(*iter);
+		curLabel = automaton.getCurrentState()->getLabel();
+		cout << " -> "<<curLabel;
+	}
+	cout << endl;
+
+	isFinal = automaton.getCurrentState()->isFinalState() ? "final" : "not a final";
+	isAcc = automaton.isAccepted() ? "accpted" : "not accepted";
+	cout << "current state " << automaton.getCurrentState()->getLabel() << " is " + isFinal + " state.";
+	cout << " thus input string is " + isAcc << "." << endl;
 
 	return 0;
 }
