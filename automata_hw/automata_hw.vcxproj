@@ -139,11 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="소스.cpp" />
-    <ClCompile Include="소스1.cpp" />
+    <ClCompile Include="funcs.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="automaton.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="헤더.h" />
+    <ClInclude Include="header.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

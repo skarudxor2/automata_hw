@@ -1,14 +1,13 @@
-#include "Çì´õ.h"
-
+#include "header.h"
 
 State::State(int id, bool isFinal)
 	: id(id), isFinal(isFinal)
 {
 
-	
+
 }
 
-Automaton::Automaton(set<char> sigma)
+Automaton::Automaton(vector<char> sigma)
 	: sigma(sigma), number_of_states(0)
 {
 	initial_state = new State(0);
@@ -20,3 +19,9 @@ void Automaton::create_state(int *transition)
 
 
 }
+
+Automaton::~Automaton()
+{
+
+}
+

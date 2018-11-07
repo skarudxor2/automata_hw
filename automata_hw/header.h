@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include <set>
 #include <string>
 #include <conio.h>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -29,7 +30,7 @@ public:
 class Automaton
 {
 	int number_of_states;
-	set<char> sigma; // set of alphabet
+	vector<char> sigma; // set of alphabet
 	vector<State*> internal_states;
 	vector<State*> final_states;
 	vector<vector<State>> transition_rules; //or int[][]
@@ -42,7 +43,7 @@ class Automaton
 	void transition(char input);
 
 public:
-	Automaton(set<char> sigma);
+	Automaton(vector<char> sigma);
 	void showCur()
 	{
 		int curId = current_state->getId();
@@ -50,3 +51,10 @@ public:
 	}
 	~Automaton();
 };
+
+
+
+vector<string> split(const string& s, char delimiter);
+void printInput(vector<char> sigma, vector<string>states, string initial, vector<string>finalStates, vector<string>delta);
+bool finalCheck(vector<string>states, vector<string>finalStates);
+bool initCheck(vector<string> states, string initial);
