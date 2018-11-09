@@ -52,7 +52,7 @@ class Automaton
 	vector<char> sigma; // set of alphabet
 	vector<State*> internal_states;
 	vector<State*> final_states;
-	vector<vector<string>> transition_rules; //or int[][]
+	vector<vector<string> > transition_rules; //or int[][]
 
 	State *current_state;
 	State *initial_state;
@@ -64,11 +64,17 @@ public:
 	Automaton(vector<char>sigma, vector<string>states, string initial, vector<string>finalStates, vector<string>delta);
 	void showStatus();
 	void transition(char input);
+	void makeMinimal(string filename);
+	int getNumberOfStates()
+	{
+		return number_of_states;
+	}
 	//is input string accepted
 	bool isAccepted()
 	{
 		return current_state->isFinalState();
 	}
+	State *transitionWithState(State *iState, char input);
 	State *getCurrentState()
 	{
 		return current_state;
