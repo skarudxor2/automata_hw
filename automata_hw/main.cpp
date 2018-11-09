@@ -2,9 +2,10 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc != 2)
+
+	if (argc != 3)
 	{
-		cout << "invalid number of input file. please excute with one input file" << endl;
+		cout << "invalid number of files. please excute with one input file and one output file" << endl;
 		exit(1);
 	}
 
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
 	bool debug = true;
 
 	string filename = argv[1];
+	string fileOutput = argv[2];
 	cout << "input file name : " << filename << endl << endl;
 	ifstream in(filename);
 	char inBuffer[MAX_SIZE];
@@ -113,6 +115,7 @@ int main(int argc, char *argv[])
 		cout << "*********************************DEBUG*********************************"<<endl<<endl;
 
 	}
+	automaton.makeMinimal(fileOutput);
 
 	cout << "enter input string : ";
 	cin >> input;
