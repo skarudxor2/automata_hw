@@ -94,58 +94,33 @@ State *Automaton::findWithLabel(string label)
 			return i;
 }
 
-
 void Automaton::showStatus()
-
 {
-
 	cout << "automaton.showStatus()" << endl;
-
 	cout << "number of states : " << number_of_states << endl;
-
 	cout << "sigma : ";
-
 	for (auto i : sigma)
-
 		cout << i << ' ';
-
 	cout << endl;
 
-
-
 	cout << "internal states : " << endl;
-
 	for (auto i : internal_states)
-
 		cout << i->getLabel() << "(" << i->getId() << ")" << endl;
-
-
 
 	cout << "initial state : " << initial_state->getLabel() << "(" << initial_state->getId() << ")" << endl;
 
-
-
 	cout << "final states : " << endl;
-
 	for (auto i : final_states)
-
 		cout << i->getLabel() << "(" << i->getId() << ")" << endl;
 
-
-
 	cout << "transiton rules : " << endl;
-
 	for (auto i : transition_rules)
-
 	{
-
 		cout << GREEK_DELTA + "(" << i[0] << "," << i[1] << ") = " << i[2];
-
 		cout << endl;
-
 	}
-
 }
+
 void Automaton::makeMinimal(string filename)
 {
 	int isDFA;
