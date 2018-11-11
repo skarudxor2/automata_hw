@@ -197,7 +197,7 @@ void Automaton::makeMinimal(string filename)
 
 		if (isDiff)
 		{
-			cout << "************ก้************" << endl;
+			cout << "************ยกรฉ************" << endl;
 		}
 
 		for (int i = 0; i < NOS; i++)
@@ -256,7 +256,8 @@ void Automaton::makeMinimal(string filename)
 
 	output << "]" << endl;
 
-	cout << "The output file for minimalDFA " << filename << " is maked!" << endl;
+
+	cout << "The output file for minimalDFA " << filename << " is made!" << endl;
 
 }
 
