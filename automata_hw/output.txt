@@ -1,0 +1,5 @@
+alphabet [a b]
+state [S0 S1]
+initial [S0]
+final [S1]
+delta [(S0,a,S1) (S0,b,S1) (S1,a,S1) (S1,b,S0)]

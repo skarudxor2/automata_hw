@@ -10,8 +10,6 @@ int main(int argc, char *argv[])
 	}
 
 
-	bool debug = true;
-
 	string filename = argv[1];
 	string fileOutput = argv[2];
 	cout << "input file name : " << filename << endl << endl;
@@ -111,14 +109,10 @@ int main(int argc, char *argv[])
 
 	Automaton automaton(sigma, states, initial, finalStates, delta);
 
-	if (debug)
-	{
-		cout << "*********************************DEBUG*********************************"<<endl;
-		printInput(sigma, states, initial, finalStates, delta);
+		cout << "*********************************STATUS*********************************"<<endl;
 		automaton.showStatus();
-		cout << "*********************************DEBUG*********************************"<<endl<<endl;
+		cout << "*********************************STATUS*********************************"<<endl<<endl;
 
-	}
 	automaton.makeMinimal(fileOutput);
 
 	cout << "enter input string : ";
