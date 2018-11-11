@@ -256,7 +256,7 @@ void Automaton::makeMinimal(string filename)
 
 	output << "]" << endl;
 
-	cout << "The output file for minimalDFA " << filename << " is maked!" << endl;
+	cout << "The output file for minimalDFA " << filename << " is made!" << endl;
 
 }
 
