@@ -1,5 +1,7 @@
 #include "header.h"
+
 void parsing(string filename, vector<char>* sigma, vector<string>* states, vector<string>* finalstates, vector<string>* delta, string* initial);
+
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +13,6 @@ int main(int argc, char *argv[])
 	}
 
 
-	bool debug = true;
 
 	string filename = argv[1];
 	string fileOutput = argv[2];
@@ -27,20 +28,18 @@ int main(int argc, char *argv[])
 	parsing(filename, &sigmaIn, &statesIn, &finalStatesIn, &deltaIn, &initialIn);
 	Automaton automatonIn(sigmaIn, statesIn, initialIn, finalStatesIn, deltaIn);
 
-	if (debug)
-	{
-		cout << "*********************************DEBUG*********************************"<<endl;
-		printInput(sigmaIn, statesIn, initialIn, finalStatesIn, deltaIn);
+		cout << "*********************************STATUS*********************************"<<endl;
 		automatonIn.showStatus();
-		cout << "*********************************DEBUG*********************************"<<endl<<endl;
+		cout << "*********************************STATUS*********************************"<<endl<<endl;
 
-	}
+	
 
 	automatonIn.makeMinimal(fileOutput);
 
 	parsing(fileOutput, &sigmaOut, &statesOut, &finalStatesOut, &deltaOut, &initialOut);
 
 	Automaton automaton(sigmaOut, statesOut, initialOut, finalStatesOut, deltaOut);
+
 
 	cout << "enter input string : ";
 	cin >> input;
