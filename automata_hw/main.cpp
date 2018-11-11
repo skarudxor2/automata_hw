@@ -34,6 +34,10 @@ int main(int argc, char *argv[])
 		vector<string> stringVector;
 
 		stringVector = split(inString, '[');
+		if (stringVector.size() <= 1)
+		{
+			continue;
+		}
 		stringVector = split(stringVector[1], ']');
 		inString = stringVector[0];
 		stringVector = split(inString, ' ');
